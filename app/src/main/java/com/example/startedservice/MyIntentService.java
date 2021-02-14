@@ -3,11 +3,17 @@ package com.example.startedservice;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.ResultReceiver;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import javax.xml.transform.Result;
+
 public class MyIntentService extends IntentService {
+
+    //Subclass of Started Service
 
     private static final String TAG = MyIntentService.class.getSimpleName();
 
@@ -28,6 +34,7 @@ public class MyIntentService extends IntentService {
         //All operations in here are perform in a background thread
 
         int sleepTime = intent.getExtras().getInt("EXAMPLE");
+
         int ctrl = 1;
 
         while (ctrl <= sleepTime) {
@@ -40,7 +47,10 @@ public class MyIntentService extends IntentService {
             ctrl++;
         }
 
-
+        ResultReceiver resultReceiver = intent.getParcelableExtra("receiver");
+        Bundle bundle = new Bundle();
+        bundle.putString("resultIntentService", "Counter is " + ctrl);
+        resultReceiver.send(101, bundle);
     }
 
     @Override

@@ -58,8 +58,8 @@ public class MyStartedService extends Service {
     }
 
     @SuppressLint("StaticFieldLeak")
-    class MyAsyncTask extends AsyncTask<Integer, String, Void> {
-
+    class MyAsyncTask extends AsyncTask<Integer, String, String> {
+        //In, progress and out parameters
         private final String TAG = MyStartedService.class.getSimpleName();
 
 
@@ -78,7 +78,7 @@ public class MyStartedService extends Service {
         }
 
         @Override
-        protected Void doInBackground(Integer... params) {
+        protected String doInBackground(Integer... params) {
             //Worker / Background thread
             int sleepTime = params[0];
 
@@ -94,15 +94,18 @@ public class MyStartedService extends Service {
                 ctrl++;
             }
 
-            return null;
+            return "Stop at: " + ctrl;
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
+        protected void onPostExecute(String str) {
             //Main Thread
             //Here we can automatically stop the service after the operation is finish
             //todo with this method stopSelf();
-            super.onPostExecute(aVoid);
+            super.onPostExecute(str);
+            Intent intent = new Intent("action.service.to.activity");
+            intent.putExtra("startedServiceResult", str);
+            sendBroadcast(intent);
         }
 
     }
