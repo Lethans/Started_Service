@@ -10,9 +10,9 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-public class MyService extends Service {
+public class MyStartedService extends Service {
 
-    private static final String TAG = MyService.class.getSimpleName();
+    private static final String TAG = MyStartedService.class.getSimpleName();
 
     @Override
     public void onCreate() {
@@ -60,7 +60,7 @@ public class MyService extends Service {
     @SuppressLint("StaticFieldLeak")
     class MyAsyncTask extends AsyncTask<Integer, String, Void> {
 
-        private final String TAG = MyService.class.getSimpleName();
+        private final String TAG = MyStartedService.class.getSimpleName();
 
 
         @Override
@@ -72,7 +72,7 @@ public class MyService extends Service {
         @Override
         protected void onProgressUpdate(String... values) {
             //Main thread
-            Toast.makeText(MyService.this, values[0], Toast.LENGTH_SHORT).show();
+            Toast.makeText(MyStartedService.this, values[0], Toast.LENGTH_SHORT).show();
             Log.i(TAG, "onProgressUpdate: Count is : " + values[0]);
             super.onProgressUpdate(values);
         }
