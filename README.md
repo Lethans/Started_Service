@@ -1,1 +1,1 @@
-Started_Service
+Simple example of Started & Intent Service
