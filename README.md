@@ -1,1 +1,1 @@
-Simple example of Started & Intent Service
+Simple example of Started / Intent & Bound Service

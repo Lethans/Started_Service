@@ -112,5 +112,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void goToSecondActivity(View view) {
+        startActivity(new Intent(MainActivity.this,SecondActivity.class));
+    }
+
 
 }
